@@ -1,7 +1,7 @@
 ---
 name: long-video-deep-study
 description: "Deep-learn a high-density long video (interview / course / video podcast) like reading a book: download, transcribe to timestamped SRT, AI-explain hard parts, keyword-locate, translate CN/EN side-by-side, and export notes into the memory bank. Use when the user wants to study a long video deeply, break down a podcast, or turn a talk into retrievable notes."
-version: "0.2.0"
+version: "0.2.1"
 agent_created: true
 slug: long-video-deep-study
 displayName: "长视频深度学习（像读书一样看长视频）"
@@ -11,7 +11,7 @@ displayName: "长视频深度学习（像读书一样看长视频）"
 
 把一条高信息密度长视频（深度访谈 / 课程 / video podcast）当"书"读：抽逐字稿 → AI 讲难点 → 关键词定位 → 中英翻译 → 导出笔记沉淀，最后 Build in Public 分享。核心不是"看完"，是"结构化吸收 + 可检索复用"。
 
-源自张咋啦 LongCut 方法论（见灵感库归档）+ 与 `video-understand-skill` 能力互补（本 skill 负责"观看侧"深加工，video-understand 负责"下载 + 抽帧 + 粗转写"）。
+源自张咋啦 LongCut 方法论 + 与 `video-understand-skill` 能力互补（本 skill 负责"观看侧"深加工，video-understand 负责"下载 + 抽帧 + 粗转写"）。
 
 ## 何时用
 - "深度学习这个长视频 / 拆解这条 podcast / 把这条访谈做成笔记"
@@ -41,12 +41,12 @@ displayName: "长视频深度学习（像读书一样看长视频）"
 - **search**：关键词 → 定位所有出现位置（时间戳 + 上下文）。
 - **translate**：整篇或段落 → 中英对照。
 - **frames（视觉补强）**：讲解/笔记涉及的画面，用 `video-understand-skill` 或 ffmpeg 在对应时间戳抽 1–3 帧（命令见 workflow.md「抽帧」），作为笔记配图，弥补纯音频转写丢视觉的短板（流程图 / 公式 / 代码 / 画面文字）。抽帧后可交 video-understand-skill 做画面识别，或用 `references/prompts.md` 的「视觉结合讲解」模板把帧 + 转写一起讲。
-- **export**：导出 md / txt 逐字稿 + 笔记（+ 抽帧图），落盘到记忆库指定位置。
+- **export**：导出 md / txt 逐字稿 + 笔记（+ 抽帧图），落盘到你的笔记目录。
 - ✅ 完成判据 = 用户指定的交互动作已完成并交付（讲解文本 / 定位结果 / 译文 / 抽帧图 / 导出文件均可见或落盘）。
 
 ### 5. 沉淀与分享
-- 笔记进 `记忆库/灵感库` 或 `工作记录`（按内容性质）；建议 Build in Public：看完发心得。
-- ✅ 完成判据 = 笔记已存入记忆库指定位置，且已提示用户"可分享心得（Build in Public）"。
+- 笔记存入你的个人知识库（如 Obsidian / WorkBuddy 记忆库，按内容性质分类）；建议 Build in Public：看完发心得。
+- ✅ 完成判据 = 笔记已存入你指定的笔记位置，且已提示用户"可分享心得（Build in Public）"。
 
 ## 资源（渐进式披露）
 - `references/workflow.md` — 命令模板：yt-dlp 下载（含回退）、whisper / faster-whisper 转写、SRT 切分与章节生成。
@@ -54,4 +54,4 @@ displayName: "长视频深度学习（像读书一样看长视频）"
 
 ## 关联
 - `video-understand-skill`（下载 + 抽帧 + 粗转写，本 skill 的前置 / 互补）
-- 灵感库：`AI学习-像读书一样学长视频-LongCut-2026-07-23.md`、`入门新行业逻辑顺序-淋过雨-2026-07-23.md`（获取 → 过滤 → 存储 → 决策四步对齐本 skill）
+- 参考方法：张咋啦 LongCut 长视频精读法、行业入门「获取 → 过滤 → 存储 → 决策」四步法等公开资料（四步与本 skill 对齐）。
